@@ -1,0 +1,23 @@
+QUẢN LÝ THPT: 9/11- 16/11
+Các chức năng của chương trình
+- Quản lý giáo viên
+- Quản lý học sinh
+- Quản lý điểm
+1. Nguyễn Thị Thuý Quỳnh
+- Tạo trang giao diện chính: home.cs
+- Tạo cơ sở dữ liệu
+- Kết nối cơ sở dữ liệu
+- Tạo giao diện trang đăng nhập: DangNhap.cs
+
+2. Phạm Trọng Linh:10/11 - 15/11
+- Quản lý giáo viên: GiaoVien.cs
+
+3. Thái Bá Tuyên:10/11 - 15/11
+- Quản lý học sinh: HocSinh.cs
+
+4. Dương Đức Anh: 10/11- 15/11
+- Quản lý điểm:
++ Thống kê điểm: QuanLyDiem.cs
++ Điểm cá nhân: DiemCaNhan.cs
+
+NOTE: do code ít nên các cậu tự nghĩ ra các kịch bản phong phú nhớ
