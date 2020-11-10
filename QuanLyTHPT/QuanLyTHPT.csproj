@@ -53,10 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="HocSinh.cs" />
     <Compile Include="HocSinh.designer.cs">
       <DependentUpon>HocSinh.cs</DependentUpon>
     </Compile>
+=======
+    <Compile Include="DATA\dataProvider.cs" />
+>>>>>>> origin/TQ_KetNoiCSDL
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="HocSinh.resx">
