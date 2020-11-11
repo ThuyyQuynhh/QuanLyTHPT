@@ -19,5 +19,21 @@ namespace QuanLyTHPT
         {
             InitializeComponent();
         }
+        DataProvider dataProvider = new DataProvider();
+        private void dtgDSGiaoVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+        private void btnTimkiem_Click(object sender, EventArgs e)
+        {
+            string querytimkiem = "select * from GiaoVien where TenGV like N'%" + txKhoaHS.Text.ToString() + "%'";
+            dtgDSHocsinh.DataSource = dataProvider.GetDataTable(querytimkiem);
+        }
+
+
+
+       
     }
 }
