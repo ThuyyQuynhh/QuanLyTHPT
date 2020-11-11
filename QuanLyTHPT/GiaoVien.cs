@@ -33,6 +33,39 @@ namespace QuanLyTHPT
             dtgDSGiaoVien.DataSource = dataProvider.GetDataTable(querydata);
         }
 
-        
+        private void btnTimkiem_Click(object sender, EventArgs e)
+        {
+            string querytimkiem = "select * from GiaoVien where TenGV like N'%" + txKhoaGV.Text.ToString() + "%'";
+            dtgDSGiaoVien.DataSource = dataProvider.GetDataTable(querytimkiem);
+        }
+
+        private void dtgDSGiaoVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = dtgDSGiaoVien.CurrentRow.Index;
+            btnSua.Enabled = true;
+            btnLamMoi.Enabled = true;
+            
+            txMaGV.Text = dtgDSGiaoVien.Rows[i].Cells[0].Value.ToString();
+            txTenGV.Text = dtgDSGiaoVien.Rows[i].Cells[1].Value.ToString();
+            if(dtgDSGiaoVien.Rows[i].Cells[2].Value.ToString() == "Nam")
+            {
+                rdbNam.Checked = true;
+                rdbNu.Checked = false;
+                rdbNam.Enabled = true;
+                rdbNu.Enabled = true;
+            }
+            if (dtgDSGiaoVien.Rows[i].Cells[2].Value.ToString() == "Nữ")
+            {
+                rdbNu.Checked = true;
+                rdbNam.Checked = false;
+                rdbNam.Enabled = true;
+                rdbNu.Enabled = true;
+            }
+            dtpGV.Text = dtgDSGiaoVien.Rows[i].Cells[3].Value.ToString();
+            txDiaChi.Text = dtgDSGiaoVien.Rows[i].Cells[4].Value.ToString();
+            txSDT.Text = dtgDSGiaoVien.Rows[i].Cells[5].Value.ToString();
+        }
+
+       
     }
 }
