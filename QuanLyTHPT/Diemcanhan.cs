@@ -22,7 +22,11 @@ namespace QuanLyTHPT
         {
 
         }
-
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string querytimkiem = "select * from HocSinh where TenHS like N'%" + txTimkiemHS.Text.ToString() + "%'";
+            dtgHS.DataSource = dataProvider.GetDataTable(querytimkiem);
+        }
         private void HocSinh_load(object sender, EventArgs e)
         {
             string query = "select *from HocSinh";
