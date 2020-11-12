@@ -54,6 +54,31 @@ namespace QuanLyTHPT
             txVan.Text = data.Rows[5][1].ToString();
 
         }
-        
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            txToan.Enabled = true;
+            txTin.Enabled = true;
+            txly.Enabled = true;
+            txHoa.Enabled = true;
+            txSinh.Enabled = true;
+            txVan.Enabled = true;
+        }
+
+        private void btnHoanthanh_Click(object sender, EventArgs e)
+        {
+            int i = dtgHS.CurrentRow.Index;
+            string queryToan = "update Diem set Diem = " + Convert.ToInt32(txToan.Text) + "where Diem.MaMon = 'M1' and Diem.MaHS = '" + dtgHS.Rows[i].Cells[0].Value.ToString() + "'";
+            dataProvider.exc(queryToan);
+            string queryTin = "update Diem set Diem = " + Convert.ToInt32(txTin.Text) + "where Diem.MaMon = 'M2' and Diem.MaHS = '" + dtgHS.Rows[i].Cells[0].Value.ToString() + "'";
+            dataProvider.exc(queryTin);
+            string queryLy = "update Diem set Diem = " + Convert.ToInt32(txly.Text) + "where Diem.MaMon = 'M3' and Diem.MaHS = '" + dtgHS.Rows[i].Cells[0].Value.ToString() + "'";
+            dataProvider.exc(queryLy);
+            string queryHoa = "update Diem set Diem = " + Convert.ToInt32(txHoa.Text) + "where Diem.MaMon = 'M4' and Diem.MaHS = '" + dtgHS.Rows[i].Cells[0].Value.ToString() + "'";
+            dataProvider.exc(queryHoa);
+            string querySinh = "update Diem set Diem = " + Convert.ToInt32(txSinh.Text) + "where Diem.MaMon = 'M5' and Diem.MaHS = '" + dtgHS.Rows[i].Cells[0].Value.ToString() + "'";
+            dataProvider.exc(querySinh);
+            string queryVan = "update Diem set Diem = " + Convert.ToInt32(txVan.Text) + "where Diem.MaMon = 'M6' and Diem.MaHS = '" + dtgHS.Rows[i].Cells[0].Value.ToString() + "'";
+            dataProvider.exc(queryVan);
+        }
     }
 }
