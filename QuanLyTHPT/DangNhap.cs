@@ -62,7 +62,37 @@ namespace QuanLyTHPT
 
 
         }
+        // Sự kiện click button đăng nhập
+        private void BTN_DangNhap_Click(object sender, EventArgs e)
+        {
+            if (taikhoan.Text == "" || matkhau.Text == "")
+            {
+                MessageBox.Show("Nhập tài khoản mật khẩu ");
+            }
 
-        
+            //else
+            //{
+
+            //    if (dangNhap())
+            //    {
+            //        home TC = new home();
+            //        this.Hide();
+            //        TC.ShowDialog();
+            //        this.Close();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Tài khoản đăng nhập không đúng !!!");
+            //    }
+            //}
+
+        }
+
+        private void DangNhap_Load(object sender, EventArgs e)
+        {
+            skin();
+        }
+
+
     }
 }
