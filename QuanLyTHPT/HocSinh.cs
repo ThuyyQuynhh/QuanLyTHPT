@@ -43,33 +43,74 @@ namespace QuanLyTHPT
             dtgDSHocsinh.DataSource = dataProvider.GetDataTable(querydata);
         }
 
-        private void dtgDSHocsinh_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnSua_Click_1(object sender, EventArgs e)
         {
-            int i = dtgDSHocsinh.CurrentRow.Index;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            btnThem.Enabled = false;
-            btnLamMoi.Enabled = true;
-            txMaHS.Text = dtgDSHocsinh.Rows[i].Cells[0].Value.ToString();
-            txTenHS.Text = dtgDSHocsinh.Rows[i].Cells[1].Value.ToString();
-            if (dtgDSHocsinh.Rows[i].Cells[2].Value.ToString() == "Nam")
+
+            if (txMaHS.Text == "" || txTenHS.Text == "" || dtpHS.Text == "" || txDiaChi.Text == "" || txMaLop.Text == "")
             {
-                rdbNam.Checked = true;
-                rdbNu.Checked = false;
-                rdbNam.Enabled = true;
-                rdbNu.Enabled = true;
+                MessageBox.Show("Điền đủ thông tin trước khi chọn sửa");
             }
-            if (dtgDSHocsinh.Rows[i].Cells[2].Value.ToString() == "Nữ")
+            else
             {
-                rdbNu.Checked = true;
-                rdbNam.Checked = false;
-                rdbNam.Enabled = true;
-                rdbNu.Enabled = true;
+                
+                string querynam = "update HocSinh set TenHS =N'" + txTenHS.Text + "', GioiTinh =N'" + rdbNam.Text + "',NgaySinh = '" + dtpHS.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', MaLop= '" + txMaLop + "' where MaHS= '" + txMaHS.Text + "'";
+                string querynu = "update HocSinh set TenHS =N'" + txTenHS.Text + "', GioiTinh =N'" + rdbNu.Text + "',NgaySinh = '" + dtpHS.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', MaLop= '" + txMaLop + "' where MaHS= '" + txMaHS.Text + "'";
+                if (rdbNam.Checked == true)
+                {
+                    //SqlCommand cmd = new SqlCommand(querynam, connect); cmd.ExecuteNonQuery();
+                    dataProvider.exc(querynam);
+                }
+                else
+                {
+                    //SqlCommand cmd = new SqlCommand(querynu, connect);
+                    dataProvider.exc(querynu);
+                }
+                //connect.Close();
+                dtgDSHocsinh.DataSource = dataProvider.GetDataTable("select * from HocSinh");
             }
-            dtpHS.Text = dtgDSHocsinh.Rows[i].Cells[3].Value.ToString();
-            txDiaChi.Text = dtgDSHocsinh.Rows[i].Cells[4].Value.ToString();
-            txMaLop.Text = dtgDSHocsinh.Rows[i].Cells[5].Value.ToString();
         }
 
+        private void btnXoa_Click_1(object sender, EventArgs e)
+        {
+            int i = dtgDSHocsinh.CurrentRow.Index;
+            dtgDSHocsinh.DataSource = dataProvider.GetDataTable("delete from HocSinh where MaHS = '" + dtgDSHocsinh.Rows[i].Cells[0].Value.ToString() + "' select * from HocSinh");
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            txMaHS.Text = "";
+            txTenHS.Text = "";
+            txKhoaHS.Text = "";
+            txDiaChi.Text = "";
+            txMaLop.Text = "";
+            dtpHS.Text = "";
+            rdbNam.Checked = true;
+            rdbNu.Checked = false;
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (txMaHS.Text == "" || txTenHS.Text == "" || dtpHS.Text == "" || txDiaChi.Text == "" || txMaLop.Text == "")
+            {
+                MessageBox.Show("Điền đủ thông tin trước khi chọn sửa");
+            }
+            else
+            {
+                string querynam = "insert into HocSinh values( " + txMaHS.Text + ",N'" + txTenHS.Text + "', GioiTinh =N'" + rdbNam.Text + "',NgaySinh = '" + dtpHS.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', MaLop= '" + txMaLop.Text + "') ";
+                string querynu = "insert into GiaoVien values( " + txMaHS.Text + ",N'" + txTenHS.Text + "', GioiTinh =N'" + rdbNu.Text + "',NgaySinh = '" + dtpHS.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', MaLop= '" + txMaLop.Text + "')";
+                if (rdbNam.Checked == true)
+                {
+                    // SqlCommand cmd = new SqlCommand(querynam, connect); cmd.ExecuteNonQuery();
+                    dataProvider.exc(querynam);
+                }
+                else
+                {
+                    //SqlCommand cmd = new SqlCommand(querynu, connect);
+                    dataProvider.exc(querynu);
+                }
+                // connect.Close();
+                dtgDSHocsinh.DataSource = dataProvider.GetDataTable("select * from GiaoVien");
+            }                
+        }
     }
 }
