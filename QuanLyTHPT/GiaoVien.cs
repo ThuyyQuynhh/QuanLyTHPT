@@ -66,6 +66,39 @@ namespace QuanLyTHPT
             txSDT.Text = dtgDSGiaoVien.Rows[i].Cells[5].Value.ToString();
         }
 
-       
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+                int i = dtgDSGiaoVien.CurrentRow.Index;
+                dtgDSGiaoVien.DataSource = dataProvider.GetDataTable("delete from GiaoVien where MaGV = '" + dtgDSGiaoVien.Rows[i].Cells[0].Value.ToString() + "' select * from GiaoVien");
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if(txMaGV.Text == ""||txTenGV.Text == ""||dtpGV.Text == ""||txDiaChi.Text == ""||txSDT.Text == "")
+            {
+                MessageBox.Show("Điền đủ thông tin trước khi chọn sửa");
+            }
+            else
+            {
+                
+                string querynam = "update GiaoVien set TenGV =N'" + txTenGV.Text + "', GioiTinh =N'" + rdbNam.Text + "',NgaySinh = '" + dtpGV.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', SDT= '" + txSDT.Text  + "' where MaGV= '" + txMaGV.Text + "'";
+                string querynu = "update GiaoVien set TenGV =N'" + txTenGV.Text + "', GioiTinh =N'" + rdbNu.Text + "',NgaySinh = '" + dtpGV.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', SDT= '" + txSDT.Text + "' where MaGV= '" + txMaGV.Text + "'";
+                if(rdbNam.Checked == true)
+                {
+                   
+                    dataProvider.exc(querynam);
+                }
+                else
+                {
+                    //SqlCommand cmd = new SqlCommand(querynu, connect);
+                    dataProvider.exc(querynu);
+                }                    
+               // connect.Close();
+                dtgDSGiaoVien.DataSource = dataProvider.GetDataTable("select * from GiaoVien");
+
+            }
+        }
+
+        
     }
 }
