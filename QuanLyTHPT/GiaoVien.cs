@@ -99,6 +99,44 @@ namespace QuanLyTHPT
             }
         }
 
-        
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            txMaGV.Text = "";
+            txTenGV.Text = "";
+            txDiaChi.Text = "";
+            txSDT.Text = "";
+            dtpGV.Text = "";
+            rdbNam.Checked = true;
+            rdbNu.Checked = false;
+            txKhoaGV.Text = "";
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (txMaGV.Text == "" || txTenGV.Text == "" || dtpGV.Text == "" || txDiaChi.Text == "" || txSDT.Text == "")
+            {
+                MessageBox.Show("Điền đủ thông tin trước khi chọn thêm");
+            }
+            else
+            {
+                string querynam = "insert into GiaoVien values( "+txMaGV.Text+ ",N'" + txTenGV.Text + "', GioiTinh =N'" + rdbNam.Text + "',NgaySinh = '" + dtpGV.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', SDT= '" + txSDT.Text + "') ";
+                string querynu = "insert into GiaoVien values( " + txMaGV.Text + ",N'" + txTenGV.Text + "', GioiTinh =N'" + rdbNu.Text + "',NgaySinh = '" + dtpGV.Value.ToString("yyyy-MM-dd") + "',DiaChi = N'" + txDiaChi.Text + "', SDT= '" + txSDT.Text + "')";
+                if (rdbNam.Checked == true)
+                {
+                    // SqlCommand cmd = new SqlCommand(querynam, connect); cmd.ExecuteNonQuery();
+                    dataProvider.exc(querynam);
+                }
+                else
+                {
+                    //SqlCommand cmd = new SqlCommand(querynu, connect);
+                    dataProvider.exc(querynu);
+                }
+                // connect.Close();
+                dtgDSGiaoVien.DataSource = dataProvider.GetDataTable("select * from GiaoVien");
+            }                
+        }
     }
 }
