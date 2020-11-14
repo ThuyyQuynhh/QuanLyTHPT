@@ -43,6 +43,32 @@ namespace QuanLyTHPT
 
             
         }
+        private void btnChon_Click(object sender, EventArgs e)
+        {
+            txlop.Text = cmblop.Text;
+            string query = "select HS.MaHS, HS.TenHS,HS.GioiTinh,HS.NgaySinh, HS.DiaChi from HocSinh HS, Lop L where HS.MaLop = L.MaLop and L.TenLop = '" + cmblop.Text + "'";
+            DataTable datagan = dataProvider.GetDataTable(query);
+            dgvDiemLop.ColumnCount = 6;
+            dgvDiemLop.RowCount = datagan.Rows.Count;
+            for (int i = 0; i <= datagan.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j <= 4; j++)
+                {
+                    string x = datagan.Rows[i][j].ToString();
+                    dgvDiemLop.Rows[i].Cells[j].Value = x;
+                }
+                string queryDTB = "exec DTB '" + dgvDiemLop.Rows[i].Cells[0].Value.ToString() + "'";
+                DataTable data = dataProvider.GetDataTable(queryDTB);
+                string y = data.Rows[0][1].ToString();
+                dgvDiemLop.Rows[i].Cells[5].Value = y;
+            }
+
+            string query1 = "select GV.TenGV from Lop L, GiaoVien GV where L.MaGVCN = GV.MaGV and L.TenLop='" + cmblop.Text + "'";
+            DataTable data1 = dataProvider.GetDataTable(query1);
+            txGvcn.Text = data1.Rows[0][0].ToString();
+
+
+        }
 
         private void cmbKhoi_DisplayMemberChanged(object sender, EventArgs e)
         {
