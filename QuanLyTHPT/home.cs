@@ -45,20 +45,20 @@ namespace QuanLyTHPT
             - tabname: Tên sẽ hiển thị ra của tabpage con
             - usetr: usercontrol được thêm vào cái page mới được tạo ra
          */
-        public void addpage(DevExpress.XtraTab.XtraTabControl xtratabCha, string tabNameAdd, System.Windows.Forms.UserControl useCtr)
+        public  void addpage(DevExpress.XtraTab.XtraTabControl xtratabCha , string tabNameAdd ,System.Windows.Forms.UserControl useCtr )    
         {
             int dem = 0;        // biến đếm tabpage trùng tên
-            foreach (DevExpress.XtraTab.XtraTabPage tab in fr_main.TabPages)                 // chạy vòng lặp để ktra xem form muốn add vào đã có chưa
+            foreach(DevExpress.XtraTab.XtraTabPage tab in fr_main.TabPages)                 // chạy vòng lặp để ktra xem form muốn add vào đã có chưa
             {
-                if (tab.Name == tabNameAdd)                                                  // nếu tên form mới đã có
-                {
+                if(tab.Name == tabNameAdd)                                                  // nếu tên form mới đã có
+                {                   
                     fr_main.SelectedTabPage = tab;                          // focus vào page muốn tạo nhưng đã tồn tại 
                     dem = 1;                                                // thay đổi biến đếm =1
                 }
 
-            }
+            }   
             // chạy xong vòng lặp, nếu dem = 1 = > page đã tồn tại, nếu dem !=1 => page chưa tồn tại nên sẽ addpage vào extratab
-            if (dem != 1)
+            if(dem != 1)
             {
                 DevExpress.XtraTab.XtraTabPage TabAdd = new DevExpress.XtraTab.XtraTabPage();           // tạo ra page  để add usercontrol và sau đó add vào extratab
                 TabAdd.Text = tabNameAdd;                       // gán tên của tabpage mới được tạo bằng tên mình muốn
@@ -70,7 +70,7 @@ namespace QuanLyTHPT
             }
 
 
-
+           
         }
 
         // sự kiện khi click vào dấu x của page con trong xtratabcontrol
@@ -79,9 +79,9 @@ namespace QuanLyTHPT
             DevExpress.XtraTab.XtraTabControl tabControl = sender as DevExpress.XtraTab.XtraTabControl;
             DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs arg = e as DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs;
             (arg.Page as DevExpress.XtraTab.XtraTabPage).Dispose();
+            
 
-
-
+            
         }
         // click vào button thêm món
         private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)
@@ -90,7 +90,7 @@ namespace QuanLyTHPT
             addpage(fr_main, "Quản lý giáo viên", GV);
             //DanhSachBan DSB = new DanhSachBan();
             //addpage(fr_main, "Thêm món", DSB);
-
+            
         }
         // click vào button đặt bàn
         private void barButtonItem15_ItemClick(object sender, ItemClickEventArgs e)

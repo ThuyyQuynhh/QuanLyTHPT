@@ -139,6 +139,6 @@ namespace QuanLyTHPT
                 // connect.Close();
                 dtgDSHocsinh.DataSource = dataProvider.GetDataTable("select * from GiaoVien");
             }                
-       }
+        }
     }
 }

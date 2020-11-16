@@ -36,10 +36,10 @@ namespace QuanLyTHPT
             return result.Rows.Count > 0;
         }
 
+       
 
 
-
-
+        
         // button thoát form đăng nhập = > thoát chương trình
         private void thoat_Click(object sender, EventArgs e)
         {
@@ -62,6 +62,7 @@ namespace QuanLyTHPT
 
 
         }
+
         // Sự kiện click button đăng nhập
         private void BTN_DangNhap_Click(object sender, EventArgs e)
         {
@@ -70,21 +71,21 @@ namespace QuanLyTHPT
                 MessageBox.Show("Nhập tài khoản mật khẩu ");
             }
 
-            //else
-            //{
+            else
+            {
 
-            //    if (dangNhap())
-            //    {
-            //        home TC = new home();
-            //        this.Hide();
-            //        TC.ShowDialog();
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Tài khoản đăng nhập không đúng !!!");
-            //    }
-            //}
+                if (dangNhap())
+                {
+                    home TC = new home();
+                    this.Hide();
+                    TC.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản đăng nhập không đúng !!!");
+                }
+            }
 
         }
 
@@ -92,7 +93,5 @@ namespace QuanLyTHPT
         {
             skin();
         }
-
-
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLyTHPT.Data
+namespace QuanLyTHPT.Data
 {
     class DataProvider
     {
